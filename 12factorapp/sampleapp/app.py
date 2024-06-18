@@ -1,8 +1,14 @@
 from flask import Flask
+
 app=Flask(__name__)
+
+visit=0
+
 @app.route('/')
 def welcome():
-    return "welcome to codebase"
+    global visit
+    visit+=1
+    return "welcome to codebase"+str(visit)
 
 @app.route('/nothing')
 def notihing():
