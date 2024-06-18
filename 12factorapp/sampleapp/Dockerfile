@@ -1,4 +1,4 @@
-FROM python:3.10.12-alphine
+FROM python:3.10.12-alpine
 # uses this for creating a isolated environment
 
 WORKDIR /12-factor-app
