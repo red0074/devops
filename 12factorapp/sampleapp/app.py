@@ -1,9 +1,12 @@
+import os
 from flask import Flask
 from redis import Redis
 
 app=Flask(__name__)
-redisDb=Redis(host='localhost',port=6381)
-
+# redisDb=Redis(host='localhost',port=6381)
+host=os.getenv('HOST')
+port=os.getenv('PORT')
+redisDb=Redis(host=host,port=port)
 @app.route("/")
 def process():
     redisDb.incr('visitorcount')
