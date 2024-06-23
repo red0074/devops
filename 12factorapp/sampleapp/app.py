@@ -1,10 +1,20 @@
 from flask import Flask
+from redis import Redis
 
 app=Flask(__name__)
+redisDb=Redis(host='localhost',port=6381)
+
+@app.route("/")
+def process():
+    redisDb.incr('visitorcount')
+    visitorcount=str(redisDb.get('visitorcount'),'utf-8')
+    return "welcome to process with external service"+visitorcount
+
 
 visit=0
 
-@app.route('/')
+
+@app.route('/processbasicexample')
 def welcome():
     global visit
     visit+=1
